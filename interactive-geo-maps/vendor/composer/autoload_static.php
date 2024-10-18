@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitc56aeceaee2cb95db0e2ba9841e015eb
+class ComposerStaticInit9d78aa80bc16ea6ad215467989e01119
 {
     public static $files = array (
         '57aea4427272562eb78cf61f6733ec6a' => __DIR__ . '/..' . '/saltus/framework/lib/codestar-framework/codestar-framework.php',
@@ -142,9 +142,9 @@ class ComposerStaticInitc56aeceaee2cb95db0e2ba9841e015eb
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitc56aeceaee2cb95db0e2ba9841e015eb::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitc56aeceaee2cb95db0e2ba9841e015eb::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitc56aeceaee2cb95db0e2ba9841e015eb::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit9d78aa80bc16ea6ad215467989e01119::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit9d78aa80bc16ea6ad215467989e01119::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit9d78aa80bc16ea6ad215467989e01119::$classMap;
 
         }, null, ClassLoader::class);
     }

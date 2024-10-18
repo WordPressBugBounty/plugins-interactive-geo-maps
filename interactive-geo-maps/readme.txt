@@ -4,7 +4,7 @@ Tags: map, interactive map, world map, travel map, us map
 Requires at least: 5.0
 Tested up to: 6.5
 Requires PHP: 7.0
-Stable tag: 1.6.19
+Stable tag: 1.6.20
 Donate link: https://interactivegeomaps.com
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -99,6 +99,9 @@ You can visit this [article on how to use the plugin together with WP Rocket](ht
 
 == Changelog ==
 
+= 1.6.20 =
+Update Freemius SDK to v2.8.0
+
 = 1.6.19 =
 Fix a bug with lightbox not displaying.
 
@@ -149,7 +152,7 @@ Replace placeholders in content on proMap.php to allow proper merge
 Keep original region name for labels in grouped regions
 Replace remember tabs feature
 Add space to separate elements
-Selectable Lat. and Long. values with tripple click
+Selectable Lat. and Long. values with triple click
 
 = 1.6.7 =
 New Feature: add ?image parameter to single map pages to return image
