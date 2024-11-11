@@ -5,41 +5,38 @@ namespace Saltus\WP\Plugin\Saltus\InteractiveMaps\Plugin;
  * Defines the list of available maps
  */
 class MapList {
+    public $maps;
 
-	public $maps;
+    public function __construct() {
+        $this->add_filters();
+        $this->set_maps();
+    }
 
-	public function __construct() {
-		$this->add_filters();
-		$this->set_maps();
-	}
+    public function add_filters() {
+        add_filter(
+            'igm_map_list_json',
+            function ( $json ) {
+                $converted = json_decode( $json, true );
 
-	public function add_filters() {
+                // to add this to the end of the list
+                $options = $converted;
 
-		add_filter(
-			'igm_map_list_json',
-			function( $json ) {
-				$converted = json_decode( $json, true );
+                $options[ __( 'Portugal Maps', 'interactive-geo-maps' ) ] = [
+                    'custom_cmoreira_portugalLisboaFreguesias'     => 'Portugal - Freguesias Lisboa (23kb)',
+                    'custom_cmoreira_portugalPortoFreguesias'      => 'Portugal - Freguesias Porto (12kb)',
+                    'custom_cmoreira_portugalModifiedDistricts'    => 'Portugal - Districts Viewport (73kb)',
+                    'custom_cmoreira_portugalModifiedMunicipios'   => 'Portugal -  Municipios Viewport - Incomplete (369kb)',
+                    'custom_cmoreira_portugalModifiedConcelhos'    => 'Portugal -  Concelhos Viewport (576kb)',
+                    'custom_cmoreira_portugalModifiedConcelhosLow' => 'Portugal -  Concelhos Viewport Low (323kb)',
+                ];
 
-				// to add this to the end of the list
-				$options = $converted;
+                return json_encode( $options );
+            }
+        );
+    }
 
-				$options[ __( 'Portugal Maps', 'interactive-geo-maps' ) ] = [
-					'custom_cmoreira_portugalLisboaFreguesias'     => 'Portugal - Freguesias Lisboa (23kb)',
-					'custom_cmoreira_portugalPortoFreguesias'      => 'Portugal - Freguesias Porto (12kb)',
-					'custom_cmoreira_portugalModifiedDistricts'    => 'Portugal - Districts Viewport (73kb)',
-					'custom_cmoreira_portugalModifiedMunicipios'   => 'Portugal -  Municipios Viewport - Incomplete (369kb)',
-					'custom_cmoreira_portugalModifiedConcelhos'    => 'Portugal -  Concelhos Viewport (576kb)',
-					'custom_cmoreira_portugalModifiedConcelhosLow' => 'Portugal -  Concelhos Viewport Low (323kb)',
-				];
-
-				return json_encode( $options );
-			}
-		);
-
-	}
-
-	public function set_maps() {
-		$json = '{
+    public function set_maps() {
+        $json = '{
 			"World, Regions & Continents": {
 				"region\/world\/africaHigh": "Africa High (79kb)",
 				"region\/world\/africaLow": "Africa Low (37kb)",
@@ -699,8 +696,8 @@ class MapList {
 				"region\/usa\/orLow": "Oregon Low (40kb)",
 				"region\/usa\/paHigh": "Pennsylvania High (89kb)",
 				"region\/usa\/paLow": "Pennsylvania Low (41kb)",
-				"region\/usa\/riHigh": "Rhoe Island High (5kb)",
-				"region\/usa\/riLow": "Rhoe Island Low (3kb)",
+				"region\/usa\/riHigh": "Rhode Island High (5kb)",
+				"region\/usa\/riLow": "Rhode Island Low (3kb)",
 				"region\/usa\/scHigh": "South Carolina High (69kb)",
 				"region\/usa\/scLow": "South Carolina Low (32kb)",
 				"region\/usa\/sdHigh": "South Dakota High (44kb)",
@@ -801,8 +798,8 @@ class MapList {
 				"region\/usa\/congressional\/orLow": "Oregon Low Congressional (113kb)",
 				"region\/usa\/congressional\/paHigh": "Pennsylvania High Congressional (463kb)",
 				"region\/usa\/congressional\/paLow": "Pennsylvania Low Congressional (188kb)",
-				"region\/usa\/congressional\/riHigh": "Rhoe Island High Congressional (28kb)",
-				"region\/usa\/congressional\/riLow": "Rhoe Island Low Congressional (10kb)",
+				"region\/usa\/congressional\/riHigh": "Rhode Island High Congressional (28kb)",
+				"region\/usa\/congressional\/riLow": "Rhode Island Low Congressional (10kb)",
 				"region\/usa\/congressional\/scHigh": "South Carolina High Congressional (125kb)",
 				"region\/usa\/congressional\/scLow": "South Carolina Low Congressional (43kb)",
 				"region\/usa\/congressional\/sdHigh": "South Dakota High Congressional (86kb)",
@@ -903,8 +900,8 @@ class MapList {
 				"region\/usa\/congressional2022\/orLow": "Oregon Low Congressional 2022 (3kb)",
 				"region\/usa\/congressional2022\/paHigh": "Pennsylvania High Congressional 2022 (11kb)",
 				"region\/usa\/congressional2022\/paLow": "Pennsylvania Low Congressional 2022 (7kb)",
-				"region\/usa\/congressional2022\/riHigh": "Rhoe Island High Congressional 2022 (1kb)",
-				"region\/usa\/congressional2022\/riLow": "Rhoe Island Low Congressional 2022 (737bb)",
+				"region\/usa\/congressional2022\/riHigh": "Rhode Island High Congressional 2022 (1kb)",
+				"region\/usa\/congressional2022\/riLow": "Rhode Island Low Congressional 2022 (737bb)",
 				"region\/usa\/congressional2022\/scHigh": "South Carolina High Congressional 2022 (7kb)",
 				"region\/usa\/congressional2022\/scLow": "South Carolina Low Congressional 2022 (4kb)",
 				"region\/usa\/congressional2022\/sdHigh": "South Dakota High Congressional 2022 (1kb)",
@@ -1029,6 +1026,6 @@ class MapList {
 			}
 		}';
 
-		$this->maps = apply_filters( 'igm_map_list_json', $json );
-	}
+        $this->maps = apply_filters( 'igm_map_list_json', $json );
+    }
 }

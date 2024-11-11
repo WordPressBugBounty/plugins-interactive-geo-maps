@@ -99,8 +99,14 @@ You can visit this [article on how to use the plugin together with WP Rocket](ht
 
 == Changelog ==
 
+= 1.6.21 =
+Update Freemius SDK to v2.9.0
+Update the misspelling for Rhode Island.
+
 = 1.6.20 =
 Update Freemius SDK to v2.8.0
+Update docker compose commands.
+Add bash scripts to help with linting.
 
 = 1.6.19 =
 Fix a bug with lightbox not displaying.
