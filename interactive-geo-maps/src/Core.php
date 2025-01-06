@@ -137,8 +137,8 @@ class Core {
      * @return void
      */
     public function prepare_assets_src() {
-        add_filter( 'script_loader_src', array($this, 'check_admin_assets_src') );
-        add_filter( 'style_loader_src', array($this, 'check_admin_assets_src') );
+        add_filter( 'script_loader_src', [$this, 'check_admin_assets_src'] );
+        add_filter( 'style_loader_src', [$this, 'check_admin_assets_src'] );
     }
 
     /**
@@ -163,7 +163,7 @@ class Core {
     public function admin_url_filters() {
         add_filter(
             'admin_url',
-            array($this, 'check_remember_tab_url'),
+            [$this, 'check_remember_tab_url'],
             1,
             10
         );
@@ -226,7 +226,7 @@ class Core {
     public function prepare_meta_sanitize() {
         add_filter(
             'csf_map_info_save',
-            array($this, 'sanitize_meta_save'),
+            [$this, 'sanitize_meta_save'],
             1,
             3
         );
@@ -334,34 +334,28 @@ class Core {
         $this->actions = new Plugin\Actions($this);
     }
 
-    /**
-     * Load translations
-     */
+    /** Load translations */
     private function set_locale() {
-        $i18n = new Plugin\I18n($this->name);
-        $i18n->load_plugin_textdomain( dirname( plugin_basename( $this->file_path ) ) );
+        add_action( 'init', function () {
+            $i18n = new Plugin\I18n($this->name);
+            $i18n->load_plugin_textdomain( dirname( plugin_basename( $this->file_path ) ) );
+        } );
     }
 
-    /**
-     * Load assets
-     */
+    /** Load assets */
     private function set_assets() {
         $assets = new Plugin\Assets($this);
         $assets->load_assets();
     }
 
-    /**
-     * Register Shortcode
-     */
+    /** Register Shortcode */
     public function register_shortcode() {
-        add_shortcode( 'display-map', array($this, 'render_shortcode') );
+        add_shortcode( 'display-map', [$this, 'render_shortcode'] );
         // alternative shortcode to avoid conflicts with other map plugins
-        add_shortcode( 'display-igmap', array($this, 'render_shortcode') );
+        add_shortcode( 'display-igmap', [$this, 'render_shortcode'] );
     }
 
-    /**
-     * Register blocks
-     */
+    /** Register blocks */
     public function register_blocks() {
         $map_block = new Plugin\Blocks\MapBlock($this);
     }
@@ -373,20 +367,18 @@ class Core {
         $current_map_preview = new Plugin\Utils\MapListCurrent($this);
     }
 
-    /**
-     * Render shortcode
-     */
+    /** Render shortcode */
     public function render_shortcode( $atts, $content = null, $tag = '' ) {
         // normalize attribute keys, lowercase
         $atts = array_change_key_case( (array) $atts, CASE_LOWER );
         // override default attributes with user attributes
-        $map_atts = shortcode_atts( array(
+        $map_atts = shortcode_atts( [
             'id'           => null,
             'meta'         => null,
             'regions'      => null,
             'roundmarkers' => null,
             'demo'         => null,
-        ), $atts, $tag );
+        ], $atts, $tag );
         if ( !isset( $map_atts['id'] ) ) {
             return;
         }
@@ -401,7 +393,7 @@ class Core {
         $map = new Plugin\Map($this);
         $html = $map->render( $map_atts, $this );
         // add footer scripts
-        add_action( 'wp_footer', array($this, 'footer_content') );
+        add_action( 'wp_footer', [$this, 'footer_content'] );
         return $html;
     }
 
@@ -435,11 +427,11 @@ class Core {
             $html = '<div id="igm-hidden-footer-content">' . $this->footer_content . '</div>';
             // we should sanitize for security, but users want to include all kinds of content, including forms.
             /*
-            	$allowed_html = wp_kses_allowed_html( 'post' );
-            	$allowed_html['style'] = [
-            		'type' => true,
-            	];
-            	echo wp_kses( $html, $allowed_html );
+                $allowed_html = wp_kses_allowed_html( 'post' );
+                $allowed_html['style'] = [
+                    'type' => true,
+                ];
+                echo wp_kses( $html, $allowed_html );
             */
             echo $html;
         }
