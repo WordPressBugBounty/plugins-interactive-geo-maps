@@ -4,9 +4,10 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitdf5adc35bf14130dc5b68d17d30eea7d
+class ComposerStaticInit38af213eac0899ffc7b1a8508131fa6e
 {
     public static $files = array (
+        '8d50dc88e56bace65e1e72f6017983ed' => __DIR__ . '/..' . '/freemius/wordpress-sdk/start.php',
         '57aea4427272562eb78cf61f6733ec6a' => __DIR__ . '/..' . '/saltus/framework/lib/codestar-framework/codestar-framework.php',
     );
 
@@ -142,9 +143,9 @@ class ComposerStaticInitdf5adc35bf14130dc5b68d17d30eea7d
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitdf5adc35bf14130dc5b68d17d30eea7d::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitdf5adc35bf14130dc5b68d17d30eea7d::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitdf5adc35bf14130dc5b68d17d30eea7d::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit38af213eac0899ffc7b1a8508131fa6e::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit38af213eac0899ffc7b1a8508131fa6e::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit38af213eac0899ffc7b1a8508131fa6e::$classMap;
 
         }, null, ClassLoader::class);
     }
