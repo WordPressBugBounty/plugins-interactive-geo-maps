@@ -10,19 +10,13 @@ use Saltus\WP\Plugin\Saltus\InteractiveMaps;
 class Map {
     public $core;
 
-    /**
-     * Options for Map CPT
-     */
+    /** Options for Map CPT */
     public $options;
 
-    /**
-     * Current Map ID
-     */
+    /** Current Map ID */
     public $map_id;
 
-    /**
-     * Meta fields
-     */
+    /** Meta fields */
     public $meta;
 
     /**
@@ -92,10 +86,10 @@ class Map {
         if ( !is_array( $meta ) ) {
             $meta = [];
         }
-        $performance = array(
+        $performance = [
             'animations' => ( isset( $options['animations'] ) ? $options['animations'] : true ),
             'lazyLoad'   => ( isset( $options['lazyLoad'] ) ? $options['lazyLoad'] : false ),
-        );
+        ];
         $meta['performance'] = $performance;
         // default zoom
         $meta['zoomMaster'] = ( isset( $options['zoomMaster'] ) ? $options['zoomMaster'] : false );
@@ -140,9 +134,9 @@ class Map {
         if ( !empty( $this->options['tooltip_render_html'] ) ) {
             $render_tooltip_mode = (bool) $this->options['tooltip_render_html'];
         }
-        $meta['regions'] = ( isset( $meta['regions'] ) ? $this->tooltip_nl2br( $id, $meta['regions'], $render_tooltip_mode ) : array() );
+        $meta['regions'] = ( isset( $meta['regions'] ) ? $this->tooltip_nl2br( $id, $meta['regions'], $render_tooltip_mode ) : [] );
         $meta['regions'] = $this->set_region_source( $meta['regions'] );
-        $meta['roundMarkers'] = ( isset( $meta['roundMarkers'] ) ? $this->tooltip_nl2br( $id, $meta['roundMarkers'], $render_tooltip_mode ) : array() );
+        $meta['roundMarkers'] = ( isset( $meta['roundMarkers'] ) ? $this->tooltip_nl2br( $id, $meta['roundMarkers'], $render_tooltip_mode ) : [] );
         if ( !empty( $meta['map'] ) ) {
             $meta['urls'] = [$meta['map']];
             $meta = apply_filters( 'igm_prepare_meta', $meta );
@@ -180,7 +174,7 @@ class Map {
             $order[$key] = $i++;
         }
         // iterate the list of regions to sort the sources
-        $sorted_regions = array();
+        $sorted_regions = [];
         foreach ( $regions as $entry ) {
             if ( !isset( $entry['id'] ) ) {
                 continue;
@@ -318,7 +312,7 @@ class Map {
      * @param array $regions   regions data
      * @return array $regions  converted regions data
      */
-    public function process_regions_dictionary( int $id, array $regions = array() ) {
+    public function process_regions_dictionary( int $id, array $regions = [] ) {
         if ( !$id || empty( $regions ) ) {
             return $regions;
         }
@@ -351,7 +345,7 @@ class Map {
                                 $temp .= $reg . ',';
                             }
                         }
-                        $region['id'] = rtrim( $temp, "," );
+                        $region['id'] = rtrim( $temp, ',' );
                     }
                     // if this id doesn't exist in the list of available regions, maybe unset this entry?
                     if ( !in_array( $region['id'], $ids ) ) {

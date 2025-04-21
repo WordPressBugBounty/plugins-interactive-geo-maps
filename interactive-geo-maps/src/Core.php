@@ -182,7 +182,9 @@ class Core {
             return $link;
         }
         if ( isset( $_REQUEST['igmtab'] ) ) {
-            $params['igmtab'] = $_REQUEST['igmtab'];
+            // sanitize the value
+            $igmtab = sanitize_key( $_REQUEST['igmtab'] );
+            $params['igmtab'] = $igmtab;
             $link = add_query_arg( $params, $link );
         }
         return $link;
