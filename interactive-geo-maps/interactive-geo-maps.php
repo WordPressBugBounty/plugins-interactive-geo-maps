@@ -7,7 +7,7 @@
  * Plugin Name:       MapGeo - Interactive Geo Maps
  * Plugin URI:        https://interactivegeomaps.com/
  * Description:       Create interactive geographic vector maps of the world, continents or any country in the world. Color full regions or create markers on specific locations that will have information on hover and can also have actions on click. This plugin uses the online amcharts library to generate the maps.
- * Version:           1.6.25
+ * Version:           1.6.26
  * Requires PHP:      7.0
  * Author:            MapGeo
  * Author URI:        https://interactivegeomaps.com
@@ -97,10 +97,12 @@ if ( function_exists( __NAMESPACE__ . '\\igmfreemiusinit' ) ) {
         );
         // set plugin icon for freemius
         igmfreemiusinit()->add_filter( 'plugin_icon', 'Saltus\\WP\\Plugin\\Saltus\\InteractiveMaps\\igm_plugin_icon' );
-        igmfreemiusinit()->override_i18n( [
-            'start-trial' => __( 'Free 7 Day Pro Trial', 'interactive-geo-maps' ),
-            'upgrade'     => __( 'Get Pro Features', 'interactive-geo-maps' ),
-        ] );
+        add_action( 'init', function () {
+            igmfreemiusinit()->override_i18n( [
+                'start-trial' => __( 'Free 7 Day Pro Trial', 'interactive-geo-maps' ),
+                'upgrade'     => __( 'Get Pro Features', 'interactive-geo-maps' ),
+            ] );
+        } );
     }
     if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
         require_once dirname( __FILE__ ) . '/vendor/autoload.php';
@@ -118,7 +120,7 @@ if ( function_exists( __NAMESPACE__ . '\\igmfreemiusinit' ) ) {
         add_action( 'plugins_loaded', function () use($framework) {
             $plugin = new Core(
                 'interactive-geo-maps',
-                '1.6.25',
+                '1.6.26',
                 __FILE__,
                 $framework
             );

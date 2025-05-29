@@ -17,8 +17,6 @@ class Actions {
      * @param Core $core This plugin's instance.
      */
     public function __construct( Core $core ) {
-        $this->actions = $this->get_actions();
-
         // filters - set default actions
         add_filter( 'igm_click_actions', [ $this, 'default_actions' ] );
     }
