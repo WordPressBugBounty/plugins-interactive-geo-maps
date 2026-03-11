@@ -78,9 +78,16 @@ class Map {
                 $main_meta['roundMarkers'] = array_merge( $main_meta['roundMarkers'], $json_meta );
             }
         }
-        // in case we use this shortcode for demo purposes, the map that will render might ne in the URL
+        /**
+         * Prevent loading arbitrary external scripts by restricting map param to non-URLs only to prevent XSS vulnerabilities.
+         * To test pass map name as a query parameter, e.g. ?map=kenyaHigh
+         * Trying to pass a URL will be ignored, e.g. ?map=http://malicious.com/malicious.js
+         */
         if ( isset( $atts['demo'] ) && isset( $_GET['map'] ) ) {
-            $main_meta['map'] = sanitize_text_field( $_GET['map'] );
+            $map_param = sanitize_text_field( $_GET['map'] );
+            if ( !filter_var( $map_param, FILTER_VALIDATE_URL ) ) {
+                $main_meta['map'] = $map_param;
+            }
         }
         $meta = $this->prepare_meta( $main_meta, $id );
         if ( !is_array( $meta ) ) {

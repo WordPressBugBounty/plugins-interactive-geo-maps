@@ -12,27 +12,27 @@ class ComposerStaticInit3c3864f396f6165e0d9e9bbee0d96870
     );
 
     public static $prefixLengthsPsr4 = array (
-        'S' => 
+        'S' =>
         array (
             'Saltus\\WP\\Plugin\\Saltus\\InteractiveMaps\\' => 40,
             'Saltus\\WP\\Framework\\' => 20,
         ),
-        'N' => 
+        'N' =>
         array (
             'Noodlehaus\\' => 11,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Saltus\\WP\\Plugin\\Saltus\\InteractiveMaps\\' => 
+        'Saltus\\WP\\Plugin\\Saltus\\InteractiveMaps\\' =>
         array (
             0 => __DIR__ . '/../..'.'/build' . '/../src',
         ),
-        'Saltus\\WP\\Framework\\' => 
+        'Saltus\\WP\\Framework\\' =>
         array (
             0 => __DIR__ . '/..' . '/saltus/framework/src',
         ),
-        'Noodlehaus\\' => 
+        'Noodlehaus\\' =>
         array (
             0 => __DIR__ . '/..' . '/hassankhan/config/src',
         ),

@@ -3,7 +3,7 @@
         'name' => 'interactivegeomaps/interactive-geo-maps',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '37fa5638a0ef504ec3a948375f06cf8b3b49ff29',
+        'reference' => '00cd7116468df5e1de8c6d4d15d3565a91f39bf8',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../build',
         'aliases' => array(),
@@ -31,7 +31,7 @@
         'interactivegeomaps/interactive-geo-maps' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '37fa5638a0ef504ec3a948375f06cf8b3b49ff29',
+            'reference' => '00cd7116468df5e1de8c6d4d15d3565a91f39bf8',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../build',
             'aliases' => array(),

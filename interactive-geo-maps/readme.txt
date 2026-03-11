@@ -99,6 +99,9 @@ You can visit this [article on how to use the plugin together with WP Rocket](ht
 
 == Changelog ==
 
+= 1.6.28 =
+Security Improvements
+
 = 1.6.27 =
 Fix script loading bug with wordpress version 6.9
 
